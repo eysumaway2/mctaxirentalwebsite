@@ -8,43 +8,48 @@
     <title>Riders' Gallery</title>
     <link rel="icon" href="mcimage3.png" type="image/png">
     <link rel="stylesheet" href="styles.css">
-    <style>
-        .gallery-container {
-            padding: 20px;
-            max-width: 100px;
-            margin: 0 auto;
-        }
-
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-        }
-
-        .gallery-item {
-            background-color: #fff;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.05);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .caption {
-            padding: 10px;
-            background-color: #333;
-            color: white;
-            font-size: 14px;
-        }
+    <style>.gallery-container {
+        padding: 20px;
+        max-width: 1200px; /* Changed from 0px to allow space for content */
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* Fixed to exactly 3 columns */
+        gap: 50px;
+        justify-items: center; /* Centers the items within each column */
+    }
+    
+    .gallery-item {
+        background-color: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+        width: 100%; /* Ensures item fills the column */
+        max-width: 350px; /* Optional: Controls max image width */
+    }
+    
+    .gallery-item:hover {
+        transform: scale(1.05);
+    }
+    
+    .gallery-item img {
+        width: 100%;
+        height: 350px;
+        object-fit: cover;
+    }
+    
+    .caption {
+        padding: 5px;
+        background-color: white;
+        color: rgb(0, 0, 0);
+        font-size: 14px;
+    }
+    
 
         .back-btn {
             margin-top: 20px;
@@ -106,6 +111,60 @@
                     <strong>Date Received:</strong> March 15, 2025
                 </div>
             </div>
+
+            <!-- Rider 1 -->
+            <div class="gallery-item">
+                <img src="20240314_120058.jpg" alt="Rider 1">
+                <div class="caption">
+                    <strong>Name:</strong> Juan Dela Cruz<br>
+                    <strong>Date Received:</strong> March 20, 2025
+                </div>
+            </div>
+
+            <!-- Rider 2 -->
+            <div class="gallery-item">
+                <img src="20240314_121137.png" alt="Rider 2">
+                <div class="caption">
+                    <strong>Name:</strong> Pedro Santos<br>
+                    <strong>Date Received:</strong> March 18, 2025
+                </div>
+            </div>
+
+            <!-- Rider 3 -->
+            <div class="gallery-item">
+                <img src="20240415_063541.jpg" alt="Rider 3">
+                <div class="caption">
+                    <strong>Name:</strong> Maria Lopez<br>
+                    <strong>Date Received:</strong> March 15, 2025
+                </div>
+            </div>
+
+            <!-- Rider 1 -->
+            <div class="gallery-item">
+                <img src="20240314_120058.jpg" alt="Rider 1">
+                <div class="caption">
+                    <strong>Name:</strong> Juan Dela Cruz<br>
+                    <strong>Date Received:</strong> March 20, 2025
+                </div>
+            </div>
+
+            <!-- Rider 2 -->
+            <div class="gallery-item">
+                <img src="20240314_121137.png" alt="Rider 2">
+                <div class="caption">
+                    <strong>Name:</strong> Pedro Santos<br>
+                    <strong>Date Received:</strong> March 18, 2025
+                </div>
+            </div>
+
+            <!-- Rider 3 -->
+            <div class="gallery-item">
+                <img src="20240415_063541.jpg" alt="Rider 3">
+                <div class="caption">
+                    <strong>Name:</strong> Maria Lopez<br>
+                    <strong>Date Received:</strong> March 15, 2025
+                </div>
+            </div>
             
 
 
@@ -114,7 +173,7 @@
     </div>
 
     <div class="back-btn">
-        <a href="index.html">← Back to Home</a>
+        <a href="home.html">← Back to Home</a>
     </div>
     
     <footer>
