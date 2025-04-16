@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Affordable and secure motorcycle rental service with real-time tracking in Metro Manila.">
     <meta name="keywords" content="motorcycle rental, MC Taxi, Metro Manila, rider operator rental, real-time tracking">
-        <title>MC TAXI RENTAL</title>
+        <title>MC-TAXI RENTAL</title>
         <link rel="icon" href="mcimage3.png" type="image/png">
     <link rel="stylesheet" href="styles.css">
     <style>
@@ -51,7 +51,17 @@
     
     <section id="home">
         <p>Secure and hassle-free motorcycle rentals.</p>
+        
     </section>
+      
+    <div class="button-container">
+        <a href="https://forms.gle/m4zzMa882nc8vJzX9" target="_blank" class="btn slide">I'm interested!</a>
+        <form action="/upload" method="post" enctype="multipart/form-data" class="upload-form">
+          <input type="file" name="file" id="fileInput" style="display:none;" onchange="this.form.submit()">
+          <button type="button" class="btn slide" onclick="document.getElementById('fileInput').click();">Submit Requirements</button>
+        </form>
+      </div>
+      
     
     <section id="about">
         
@@ -118,4 +128,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
