@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Affordable and secure motorcycle rental service with real-time tracking in Metro Manila.">
+    <meta name="keywords" content="motorcycle rental, MC Taxi, Metro Manila, rider operator rental, real-time tracking">
+        <title>MC-TAXI RENTAL</title>
+        <link rel="icon" href="mcimage3.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        header {
+            background: #ff9d0086;
+        }
+        iframe {
+            border-radius: 1000px;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+        }
+        .login-links {
+            margin-top: 20px;
+        }
+        form {
+            display: inline-block;
+            text-align: left; 
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to MC Taxi Rental</h1>
+        <nav>
+    <ul>
+        <li><a href="about.html">About</a></li> <!-- Link to About Page -->
+        <li><a href="contact.html">Contact</a></li> <!-- Link to Contact Page -->
+        <li><a href="gallery.html">Gallery</a></li> <!-- Link to Gallery Page -->
+    </ul>
+</nav>
+
+        <div class="login-links">
+            <a href="#rider-login">Rider Login</a> | 
+            <a href="#operator-login">Operator Login</a> | 
+            <a href="#admin-login">Admin Login</a>
+        </div>
+    </header>
+    
+    <section id="home">
+        <p>Secure and hassle-free motorcycle rentals.</p>
+    </section>
+    
+    <section id="about">
+        
+        <h2>Our Mission</h2>
+        <p>To provide MC units to all riders in need. We offer affordable and convenient motorcycle rental service that ensures safety, reliability, and efficiency for both riders and operators.</p>
+        <h2>Vision</h2>
+        <p>To be the most trusted and reliable MC Taxi Rental in Metro Manila.</p>    
+        <h2>Core Values</h2>
+        <p>Trust, Integrity, and Reliability</p>
+        <h2>Who We Are?</h2>
+        <p>MC Taxi Rental is committed to providing a seamless and secure motorcycle rental experience. Our service includes real-time tracking, secure payments, and a hassle-free booking process.</p>       
+        <h2>Why Choose Us?</h2>
+        <ul>
+            <li>Real-time tracking for security</li>
+            <li>Fast and easy rental process</li>
+            <li>Secure payment system</li>
+            <li>We have professional operators and riders</li>
+            <li>Reliable customer support</li>
+        </ul>
+    </section>
+    
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Email: mctaxirental@gmail.com</p>
+        <p>Phone: +63 969 300 9848</p>
+        <p>Facebook Page: <a href="https://www.facebook.com/profile.php?id=100093817257001" target="_blank" rel="noopener noreferrer">MC Taxi Rental</a></p>
+        <p>Location: <a href="https://www.google.com/maps/place/MC+TAXI+Rental/@14.5793282,121.0450918,17z/data=!3m1!4b1!4m6!3m5!1s0x3397c95c2ad95e93:0xa1ee44b9f4113e03!8m2!3d14.579323!4d121.0476721!16s%2Fg%2F11vy6z0_4p?authuser=0&entry=ttu&g_ep=EgoyMDI1MDIyNi4xIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">MC Taxi Rental Address</a></p>
+         <iframe 
+            style="margin-top: 30px; border:0; border-radius:10px;"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1930.345032352362!2d121.0450918!3d14.5793282!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c95c2ad95e93%3A0xa1ee44b9f4113e03!2sMC%20TAXI%20Rental!5e0!3m2!1sen!2sph!4v1709279150553" 
+            width="100%" 
+            height="600" 
+            style="border:0; border-radius:10px;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </section>
+    
+    <section id="register">
+        <h2>Become A Rider</h2>
+        <form id="rider-registration-form">
+            <input type="text" id="rider-first-name" placeholder="First Name" required>
+            <input type="text" id="rider-last-name" placeholder="Last Name" required>
+            <input type="email" id="rider-email" placeholder="Email" required>
+            <button type="submit" class="moving-button">Register as Rider</button>
+
+        </form>
+        
+        <h2>Become An Operator</h2>
+        <form id="operator-registration-form">
+            <input type="text" id="operator-first-name" placeholder="First Name" required>
+            <input type="text" id="operator-last-name" placeholder="Last Name" required>
+            <input type="email" id="operator-email" placeholder="Email" required>
+            <button type="submit" class="moving-button">Register as Operator</button>
+
+        </form>
+    </section>
+    <footer>
+        <p>&copy; 2025 MC Taxi Rental. All rights reserved.</p>
+    </footer>
+    <div id="motorcycle" class="motorcycle"></div>
+    <div id="motorcycle2" class="motorcycle2"></div>
+    <script src="script.js"></script>
+</body>
+</html>
+
