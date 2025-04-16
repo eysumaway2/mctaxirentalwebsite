@@ -1,5 +1,4 @@
 /* General Styling */
-
 header {
     text-align: center;
     padding: 50px;
@@ -15,7 +14,7 @@ body {
     justify-content: center; /* Horizontal center */
     align-items: center;     /* Vertical center */
     text-align: center;
-    background: url('https://i.postimg.cc/gJPYZX7Y/Screenshot-2025-03-08-223104.png') no-repeat center center fixed;
+    background: url('https://i.postimg.cc/k4ZyrgBr/mccoverwebs2.png') no-repeat center center fixed;
     background-size: cover;
     color: #333;
     text-align: center;
