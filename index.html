@@ -26,8 +26,30 @@
             display: inline-block;
             text-align: left; 
         }
+
     </style>
+        <!-- Firebase App (required) -->
+        <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+        <!-- Firebase Firestore -->
+        <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+    <script>
+        const firebaseConfig = {
+        apiKey: "AIzaSyA7lLqQXQ4yV59agqOK2cEQ2krwEwI0ITk",
+        authDomain: "mc-taxi-web-registration.firebaseapp.com",
+        projectId: "mc-taxi-web-registration",
+        storageBucket: "mc-taxi-web-registration.firebasestorage.app",
+        messagingSenderId: "637685403832",
+        appId: "1:637685403832:web:00d2c313358b6dbbfe244d"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    // Initialize Firestore
+    const db = firebase.firestore();
+
+  </script>
 </head>
+
 <body>
     <header>
         <h1>Welcome to MC Taxi Rental</h1>
@@ -101,7 +123,7 @@
     
     <section id="register">
         <h2>Become A Rider</h2>
-        <form id="rider-registration-form"> <!-- Rider Form -->
+        <form id="rider-registration-form">
             <input type="text" id="rider-first-name" placeholder="First Name" required>
             <input type="text" id="rider-last-name" placeholder="Last Name" required>
             <input type="email" id="rider-email" placeholder="Email" required>
@@ -109,7 +131,7 @@
         </form>
         
         <h2>Become An Operator</h2>
-        <form id="operator-registration-form"> <!-- Operator Form -->
+        <form id="operator-registration-form">
             <input type="text" id="operator-first-name" placeholder="First Name" required>
             <input type="text" id="operator-last-name" placeholder="Last Name" required>
             <input type="email" id="operator-email" placeholder="Email" required>
@@ -124,44 +146,39 @@
     <div id="motorcycle2" class="motorcycle2"></div>
 
     <script src="script.js"></script>
-
+    
     <script>
         const riderForm = document.getElementById('rider-registration-form');
         const operatorForm = document.getElementById('operator-registration-form');
       
-        function sendData(form, userType, firstNameId, lastNameId, emailId) {
-          form.addEventListener('submit', function (e) {
+        function submitToFirestore(form, userType) {
+          form.addEventListener('submit', async function(e) {
             e.preventDefault();
       
-            const data = {
-              firstName: document.getElementById(firstNameId).value,
-              lastName: document.getElementById(lastNameId).value,
-              email: document.getElementById(emailId).value,
-              userType: userType
-            };
+            const firstName = form.querySelector('input[placeholder="First Name"]').value;
+            const lastName = form.querySelector('input[placeholder="Last Name"]').value;
+            const email = form.querySelector('input[placeholder="Email"]').value;
       
-            fetch("https://script.google.com/macros/s/AKfycbwg_VyZR81czWEIGacITez4qCIQtkyJqKxwlyEC2E8Z-Uf0odXDnWmYo-qyscatZAoO/exec", {
-              method: "POST",
-              body: JSON.stringify(data),
-              headers: {
-                "Content-Type": "application/json"
-              }
-            })
-              .then(response => response.json())
-              .then(result => {
-                alert(`${userType} Registered Successfully!`);
-                form.reset();
-              })
-              .catch(error => {
-                console.error('Error:', error);
-                alert('There was an error submitting the form.');
+            try {
+              await db.collection('registrations').add({
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                userType: userType,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
               });
+              alert(`${userType} Registered Successfully!`);
+              form.reset();
+            } catch (error) {
+              console.error('Error writing document: ', error);
+              alert('Error registering. Please try again.');
+            }
           });
         }
       
-        sendData(riderForm, "Rider", "rider-first-name", "rider-last-name", "rider-email");
-        sendData(operatorForm, "Operator", "operator-first-name", "operator-last-name", "operator-email");
+        submitToFirestore(riderForm, "Rider");
+        submitToFirestore(operatorForm, "Operator");
       </script>
-      
+            
 </body>
 </html>
