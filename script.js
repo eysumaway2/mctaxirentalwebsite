@@ -57,5 +57,3 @@ window.addEventListener('resize', () => {
     screenWidth = window.innerWidth;
     screenHeight = window.innerHeight;
 });
-
-
