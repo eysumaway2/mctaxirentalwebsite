@@ -101,28 +101,67 @@
     
     <section id="register">
         <h2>Become A Rider</h2>
-        <form id="rider-registration-form">
+        <form id="rider-registration-form"> <!-- Rider Form -->
             <input type="text" id="rider-first-name" placeholder="First Name" required>
             <input type="text" id="rider-last-name" placeholder="Last Name" required>
             <input type="email" id="rider-email" placeholder="Email" required>
             <button type="submit" class="moving-button">Register as Rider</button>
-
         </form>
         
         <h2>Become An Operator</h2>
-        <form id="operator-registration-form">
+        <form id="operator-registration-form"> <!-- Operator Form -->
             <input type="text" id="operator-first-name" placeholder="First Name" required>
             <input type="text" id="operator-last-name" placeholder="Last Name" required>
             <input type="email" id="operator-email" placeholder="Email" required>
             <button type="submit" class="moving-button">Register as Operator</button>
-
         </form>
     </section>
+
     <footer>
         <p>&copy; 2025 MC Taxi Rental. All rights reserved.</p>
     </footer>
     <div id="motorcycle" class="motorcycle"></div>
     <div id="motorcycle2" class="motorcycle2"></div>
+
     <script src="script.js"></script>
+
+    <script>
+        const riderForm = document.getElementById('rider-registration-form');
+        const operatorForm = document.getElementById('operator-registration-form');
+      
+        function sendData(form, userType, firstNameId, lastNameId, emailId) {
+          form.addEventListener('submit', function (e) {
+            e.preventDefault();
+      
+            const data = {
+              firstName: document.getElementById(firstNameId).value,
+              lastName: document.getElementById(lastNameId).value,
+              email: document.getElementById(emailId).value,
+              userType: userType
+            };
+      
+            fetch("https://script.google.com/macros/s/AKfycbwg_VyZR81czWEIGacITez4qCIQtkyJqKxwlyEC2E8Z-Uf0odXDnWmYo-qyscatZAoO/exec", {
+              method: "POST",
+              body: JSON.stringify(data),
+              headers: {
+                "Content-Type": "application/json"
+              }
+            })
+              .then(response => response.json())
+              .then(result => {
+                alert(`${userType} Registered Successfully!`);
+                form.reset();
+              })
+              .catch(error => {
+                console.error('Error:', error);
+                alert('There was an error submitting the form.');
+              });
+          });
+        }
+      
+        sendData(riderForm, "Rider", "rider-first-name", "rider-last-name", "rider-email");
+        sendData(operatorForm, "Operator", "operator-first-name", "operator-last-name", "operator-email");
+      </script>
+      
 </body>
 </html>
