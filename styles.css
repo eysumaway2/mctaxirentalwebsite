@@ -1,10 +1,11 @@
 /* General Styling */
 header {
     text-align: center;
-    padding: 50px;
-    background: #bfff0036;
+    padding: 15px;
+    background: #ffb300b9;
     color: #ffffff;
 }
+
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin: 0;
@@ -14,11 +15,24 @@ body {
     justify-content: center; /* Horizontal center */
     align-items: center;     /* Vertical center */
     text-align: center;
-    background: url('https://i.postimg.cc/k4ZyrgBr/mccoverwebs2.png') no-repeat center center fixed;
-    background-size: cover;
     color: #333;
     text-align: center;
-    background-color: #00000048;
+    background: url('https://i.postimg.cc/k4ZyrgBr/mccoverwebs2.png') no-repeat center center fixed;
+    background-size: cover;
+    background-color: #0037ff54;
+    background-repeat: no-repeat;
+    background-position: center center;   /* Centers the image */
+    background-attachment: fixed;
+    font-size: 15px;
+  }
+  
+  @media (max-width: 768px) {
+    body {
+      background-size: contain;           /* Adjusts to fit smaller screens */
+      background-position: middle center;    /* Moves image into visible area */
+      background-attachment: none;      /* Prevents weird fixed behavior, drew remove scroll */
+    }
+  
 }
 .container {
     max-width: 600px;
@@ -78,21 +92,21 @@ nav ul li {
 
 nav ul li a {
     text-decoration: none;
-    color: white;
+    color: rgb(255, 255, 255);
     font-weight: bold;
 }
 
 .login-links a {
-    color: white;
+    color: rgb(58, 130, 0);
     text-decoration: none;
-    margin: 0 10px;
+    margin: 0 2px;
     font-weight: bold;
 }
 
 section {
     padding: 20px;
     background: rgba(255, 255, 255, 0.447);
-    margin: 100px auto;
+    margin: 25px auto;
     border-radius: 25px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     width: 80%;
@@ -102,12 +116,12 @@ section {
 section h2 {
     color: green;
     text-align: center;
-    font-size: 40px;
+    font-size: 30px;
     text-indent: 0px; 
 }
 
 input[type="text"], input[type="email"] {
-    width: 100%;
+    width: 80%;
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #ccc;
@@ -181,7 +195,7 @@ footer {
 }
 .gallery-item img {
     width: 100%; /* Make the image take up full width of the container */
-    height: 100%; /* Ensure image fills the height of the container */
+    height: 300px; /* Ensure image fills the height of the container */
     object-fit: cover; /* Ensures the image maintains aspect ratio while covering the area */
     border-radius: 0px; /* Optional rounded corners for the image itself */
     transition: transform 5.3s ease; /* Smooth transition for scaling */
@@ -189,6 +203,18 @@ footer {
 .gallery-item:hover img {
     transform: scale(1.5); /* Lalaki ng 10% kapag nag-hover */
 }
+.gallery-item:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-item p {
+  margin: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+}
+
 .caption {
     padding: 10px;
     background-color: rgba(0, 0, 0, 0.6); /* Optional dark background for text */
