@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard - MC Taxi Rental</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Firebase Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyA7lLqQXQ4yV59agqOK2cEQ2krwEwI0ITk",
+        authDomain: "mc-taxi-web-registration.firebaseapp.com",
+        projectId: "mc-taxi-web-registration",
+        storageBucket: "mc-taxi-web-registration.firebasestorage.app",
+        messagingSenderId: "637685403832",
+        appId: "1:637685403832:web:00d2c313358b6dbbfe244d"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+  </script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="max-w-6xl mx-auto p-6">
+    <div class="flex justify-between items-center mb-6">
+      <h1 class="text-2xl font-bold">🛵 Admin Dashboard - MC Taxi Rental</h1>
+      <button onclick="logout()" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Logout</button>
+    </div>
+
+    <!-- Search bar -->
+    <div class="mb-4">
+    <input type="text" id="search" placeholder="Search name, email, or type..."
+           class="w-full p-2 border rounded shadow-sm focus:outline-none focus:ring focus:border-blue-300" />
+    </div>
+
+    <div class="overflow-x-auto bg-white rounded-lg shadow">
+      <table class="min-w-full text-sm">
+        <thead class="bg-gray-200 text-gray-700 uppercase text-xs font-semibold">
+          <tr>
+            <th class="p-3 text-left">Timestamp</th>
+            <th class="p-3 text-left">First Name</th>
+            <th class="p-3 text-left">Last Name</th>
+            <th class="p-3 text-left">Email</th>
+            <th class="p-3 text-left">User Type</th>
+          </tr>
+        </thead>
+        <tbody id="table-body" class="divide-y divide-gray-200"></tbody>
+      </table>
+    </div>
+  </div>
+  
+  <script>
+    const tableBody = document.getElementById("table-body");
+    const searchInput = document.getElementById("search");
+    let registrations = [];
+  
+    // Display table
+    function displayData(dataList) {
+      tableBody.innerHTML = '';
+      dataList.forEach(data => {
+        const row = document.createElement("tr");
+        row.innerHTML = `   
+          <td class="p-3">${data.timestamp?.toDate().toLocaleString() || 'N/A'}</td>
+          <td class="p-3">${data.firstName}</td>
+          <td class="p-3">${data.lastName}</td>
+          <td class="p-3">${data.email}</td>
+          <td class="p-3">${data.userType}</td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+  
+    // Realtime listener
+    firebase.auth().onAuthStateChanged(user => {
+      if (!user) {
+        window.location.href = "login.html";
+      } else {
+        db.collection("registrations").orderBy("timestamp", "desc")
+          .onSnapshot(snapshot => {
+            console.log("New snapshot received!");
+            registrations = [];
+            snapshot.forEach(doc => {
+              registrations.push({ id: doc.id, ...doc.data() });
+            });
+            displayData(registrations);
+          });
+      }
+    });
+  
+    // Search filter
+    searchInput.addEventListener("input", function () {
+      const query = this.value.toLowerCase();
+      const filtered = registrations.filter(item =>
+        item.firstName.toLowerCase().includes(query) ||
+        item.lastName.toLowerCase().includes(query) ||
+        item.email.toLowerCase().includes(query) ||
+        item.userType.toLowerCase().includes(query)
+      );
+      displayData(filtered);
+    });
+  
+    // Logout
+    function logout() {
+      firebase.auth().signOut().then(() => {
+        window.location.href = "login.html";
+      });
+    }
+  </script>
+
+        <script>
+            let warningTimer;
+            let logoutTimer;
+        
+            function resetInactivityTimer() {
+            // Clear old timers
+            clearTimeout(warningTimer);
+            clearTimeout(logoutTimer);
+        
+            // 14-minute warning
+            warningTimer = setTimeout(() => {
+                const stay = confirm("⏰ You’ll be logged out in 1 minute due to inactivity. Click OK to stay logged in.");
+                if (stay) {
+                resetInactivityTimer(); // restart timer
+                } else {
+                // 1 more minute, then logout
+                logoutTimer = setTimeout(() => {
+                    alert("🔒 You’ve been logged out due to inactivity.");
+                    logout();
+                }, 60000); // 1 minute = 60000ms
+                }
+            }, 840000); // 14 minutes = 840000ms
+            }
+        
+            // Trigger timer on page load and user activity
+            window.onload = resetInactivityTimer;
+            document.onmousemove = resetInactivityTimer;
+            document.onkeypress = resetInactivityTimer;
+            document.ontouchstart = resetInactivityTimer;
+        </script>
+  
+</body>
+</html>
